@@ -41,9 +41,9 @@ public class Main {
 
         scanner.close();
         // Create objects
-        Pet pet1 = new Pet(1, "Buddy", "Dog", 1);
+        Pet pet1 = new Pet(1, "StudyBuddy", "CatDog.", 1);
         Pet pet2 = new Pet();
-        Owner owner1 = new Owner(101, "Alice Brown", "+77011234567", 2);
+        Owner owner1 = new Owner(101, "Brown Brown", "+7 777 777 7777", 7);
         Owner owner2 = new Owner();
 
         Veterinarian vet1 = new Veterinarian(201, "Dr. Smith", "Dog", 6);
