@@ -8,7 +8,7 @@ public class Pet {
 
     public Pet(int petId, String name, String species, int age) {
         this.petId = petId;
-        setName(name);       // validation via setter
+        setName(name);
         setSpecies(species);
         setAge(age);
     }
@@ -34,6 +34,10 @@ public class Pet {
 
     public int getAge() {
         return age;
+    }
+
+    public void setPetId(int petId) {
+        this.petId = petId;
     }
 
     public void setName(String name) {
@@ -68,6 +72,7 @@ public class Pet {
         else if (age <= 7) return "Adult";
         else return "Senior";
     }
+
 
     @Override
     public String toString() {

@@ -28,12 +28,24 @@ public class Owner {
         return name;
     }
 
+    public String getPhoneNumber() {
+        return phone;
+    }
+
     public int getNumberOfPets() {
         return numberOfPets;
     }
 
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phone = phone;
     }
 
     public void setNumberOfPets(int numberOfPets) {

@@ -40,7 +40,7 @@ public class Main {
         }
 
         scanner.close();
-        // Create objects
+
         Pet pet1 = new Pet(1, "StudyBuddy", "CatDog.", 1);
         Pet pet2 = new Pet();
         Owner owner1 = new Owner(101, "Brown Brown", "+7 777 777 7777", 7);
@@ -49,25 +49,48 @@ public class Main {
         Veterinarian vet1 = new Veterinarian(201, "Dr. Smith", "Dog", 6);
 
         System.out.println("--- PETS ---");
+        pet1.setName("StudyBuddy");
+        pet1.setPetId(1);
+        pet1.setAge(1);
+        pet1.setSpecies("CatDog");
         System.out.println(pet1);
         System.out.println(pet2);
 
         System.out.println("\n--- OWNERS ---");
+        owner1.setOwnerId(101);
+        owner1.setName("Brown Brown");
+        owner1.setPhoneNumber("+7 777 777 7777");
+        owner1.setNumberOfPets(7);
         System.out.println(owner1);
         System.out.println(owner2);
 
         System.out.println("\n--- VETERINARIAN ---");
+        vet1.setVetId(201);
+        vet1.setName("Dr. Smith");
+        vet1.setExperienceYears(6);
+        vet1.setSpecialization("Dog");
         System.out.println(vet1);
 
         System.out.println("\n--- TESTING METHODS ---");
         System.out.println(pet1.getName() + " life stage: " + pet1.getLifeStage());
         System.out.println("Is young: " + pet1.isYoung());
+        System.out.println("Pet ID: " + pet1.getPetId());
+        System.out.println("Age: " + pet1.getAge());
+        System.out.println("Species: " + pet1.getSpecies());
 
         owner1.addPet();
         System.out.println(owner1.getName() + " frequent client: " + owner1.isFrequentClient());
+        System.out.println("Owner ID: " + owner1.getOwnerId());
+        System.out.println("Name: " + owner1.getName());
+        System.out.println("Phone: " + owner1.getPhoneNumber());
+        System.out.println("Number of pets: " + owner1.getNumberOfPets());
 
         System.out.println(vet1.getName() + " experienced: " + vet1.isExperienced());
         System.out.println("Can treat dogs: " + vet1.canTreat("Dog"));
+        System.out.println("Vet ID: " + vet1.getVetId());
+        System.out.println("Name: " + vet1.getName());
+        System.out.println("Experience (years): " + vet1.getExperienceYears());
+        System.out.println("Specialization: " + vet1.getSpecialization());
 
         System.out.println("\n=== Program Complete ===");
     }

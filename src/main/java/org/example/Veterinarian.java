@@ -25,6 +25,27 @@ public class Veterinarian {
         return experienceYears;
     }
 
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setVetId(int vetId) {
+        this.vetId = vetId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExperienceYears(int experienceYears) {
+        this.experienceYears = experienceYears;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+
     public boolean isExperienced() {
         return experienceYears >= 5;
     }
