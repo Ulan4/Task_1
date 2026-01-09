@@ -1,56 +1,49 @@
 package org.example;
 public class Pet {
 
-    private int petId;
-    private String name;
-    private String species;
-    private int age;
+    protected int id;
+    protected String name;
+    protected int age;
+    protected String species;
 
-    public Pet(int petId, String name, String species, int age) {
-        this.petId = petId;
+    public Pet(int id, String name, int age, String species) {
+        setId(id);
         setName(name);
-        setSpecies(species);
         setAge(age);
+        setSpecies(species);
     }
 
-    public Pet() {
-        this.petId = 0;
-        this.name = "Unknown";
-        this.species = "Unknown";
-        this.age = 0;
-    }
-
-    public int getPetId() {
-        return petId;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSpecies() {
-        return species;
-    }
-
     public int getAge() {
         return age;
     }
 
-    public void setPetId(int petId) {
-        this.petId = petId;
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setId(int id) {
+        if (id > 0) {
+            this.id = id;
+        } else {
+            System.out.println("Invalid ID. Setting to 0.");
+            this.id = 0;
+        }
     }
 
     public void setName(String name) {
         if (name != null && !name.trim().isEmpty()) {
             this.name = name;
         } else {
-            System.out.println("Invalid pet name. Keeping previous value.");
-        }
-    }
-
-    public void setSpecies(String species) {
-        if (species != null && !species.trim().isEmpty()) {
-            this.species = species;
+            System.out.println("Name cannot be empty.");
+            this.name = "Unknown";
         }
     }
 
@@ -58,25 +51,34 @@ public class Pet {
         if (age >= 0) {
             this.age = age;
         } else {
-            System.out.println("Age cannot be negative. Setting age to 0.");
+            System.out.println("Age cannot be negative. Setting to 0.");
             this.age = 0;
         }
     }
 
-    public boolean isYoung() {
-        return age < 2;
+    public void setSpecies(String species) {
+        if (species != null && !species.trim().isEmpty()) {
+            this.species = species;
+        } else {
+            this.species = "Unknown";
+        }
     }
 
-    public String getLifeStage() {
-        if (age < 2) return "Young";
-        else if (age <= 7) return "Adult";
-        else return "Senior";
+
+    public void makeSound() {
+        System.out.println(name + " makes a sound.");
     }
 
+    public String getType() {
+        return "Pet";
+    }
 
     @Override
     public String toString() {
-        return "Pet{petId=" + petId + ", name='" + name +
-                "', species='" + species + "', age=" + age + "}";
+        return "[" + getType() + "] ID=" + id +
+                ", Name=" + name +
+                ", Age=" + age +
+                ", Species=" + species;
     }
 }
+

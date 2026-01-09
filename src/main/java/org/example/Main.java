@@ -5,137 +5,200 @@ import java.util.Scanner;
 public class Main {
 
     private static ArrayList<Pet> pets = new ArrayList<>();
+    private static ArrayList<Owner> owners = new ArrayList<>();
+    private static ArrayList<Veterinarian> veterinarians = new ArrayList<>();
+
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        System.out.println("====================================");
-        System.out.println("🐾 VETERINARY CLINIC MANAGEMENT 🐾");
-        System.out.println("====================================");
-
         boolean running = true;
 
         while (running) {
-            displayMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            menu();
+            int choice = readInt();
+
             switch (choice) {
-                case 1:
-                    addPet();
-                    break;
-                case 2:
-                    viewAllPets();
-                    break;
-                case 0:
-                    System.out.println("\n👋 Goodbye! Stay healthy!");
-                    running = false;
-                    break;
-                default:
-                    System.out.println("❌ Invalid choice. Try again.");
-            }
-            if (running) {
-                System.out.println("\n👉 Press Enter to continue...");
-                scanner.nextLine();
+                case 1 -> addPet();
+                case 2 -> viewPets();
+                case 3 -> addOwner();
+                case 4 -> viewOwners();
+                case 5 -> addVet();
+                case 6 -> viewVets();
+                case 9 -> runAllTests();
+                case 0 -> running = false;
             }
         }
-
         scanner.close();
-
-        Pet pet1 = new Pet(1, "StudyBuddy", "CatDog.", 1);
-        Pet pet2 = new Pet();
-        Owner owner1 = new Owner(101, "Brown Brown", "+7 777 777 7777", 7);
-        Owner owner2 = new Owner();
-
-        Veterinarian vet1 = new Veterinarian(201, "Dr. Smith", "Dog", 6);
-
-        System.out.println("--- PETS ---");
-        pet1.setName("StudyBuddy");
-        pet1.setPetId(1);
-        pet1.setAge(1);
-        pet1.setSpecies("CatDog");
-        System.out.println(pet1);
-        System.out.println(pet2);
-
-        System.out.println("\n--- OWNERS ---");
-        owner1.setOwnerId(101);
-        owner1.setName("Brown Brown");
-        owner1.setPhoneNumber("+7 777 777 7777");
-        owner1.setNumberOfPets(7);
-        System.out.println(owner1);
-        System.out.println(owner2);
-
-        System.out.println("\n--- VETERINARIAN ---");
-        vet1.setVetId(201);
-        vet1.setName("Dr. Smith");
-        vet1.setExperienceYears(6);
-        vet1.setSpecialization("Dog");
-        System.out.println(vet1);
-
-        System.out.println("\n--- TESTING METHODS ---");
-        System.out.println(pet1.getName() + " life stage: " + pet1.getLifeStage());
-        System.out.println("Is young: " + pet1.isYoung());
-        System.out.println("Pet ID: " + pet1.getPetId());
-        System.out.println("Age: " + pet1.getAge());
-        System.out.println("Species: " + pet1.getSpecies());
-
-        owner1.addPet();
-        System.out.println(owner1.getName() + " frequent client: " + owner1.isFrequentClient());
-        System.out.println("Owner ID: " + owner1.getOwnerId());
-        System.out.println("Name: " + owner1.getName());
-        System.out.println("Phone: " + owner1.getPhoneNumber());
-        System.out.println("Number of pets: " + owner1.getNumberOfPets());
-
-        System.out.println(vet1.getName() + " experienced: " + vet1.isExperienced());
-        System.out.println("Can treat dogs: " + vet1.canTreat("Dog"));
-        System.out.println("Vet ID: " + vet1.getVetId());
-        System.out.println("Name: " + vet1.getName());
-        System.out.println("Experience (years): " + vet1.getExperienceYears());
-        System.out.println("Specialization: " + vet1.getSpecialization());
-
-        System.out.println("\n=== Program Complete ===");
     }
 
-
-    private static void displayMenu() {
-        System.out.println("\n------------------------------------");
-        System.out.println("1️⃣ Add new pet");
-        System.out.println("2️⃣ View all pets");
-        System.out.println("0️⃣ Exit and test program by creating object");
-        System.out.print("👉 Enter your choice: ");
+    private static void menu() {
+        System.out.println("\n=== MENU ===");
+        System.out.println("1 Add Pet");
+        System.out.println("2 View Pets");
+        System.out.println("3 Add Owner");
+        System.out.println("4 View Owners");
+        System.out.println("5 Add Veterinarian");
+        System.out.println("6 View Veterinarians");
+        System.out.println("9 TEST EVERYTHING");
+        System.out.println("0 Exit");
     }
+
     private static void addPet() {
-        System.out.println("\n🐶 ADD NEW PET");
+        System.out.print("1 Dog | 2 Cat: ");
+        int type = readInt();
 
-        System.out.print("Enter pet ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("ID: ");
+        int id = readInt();
 
-        System.out.print("Enter pet name: ");
+        System.out.print("Name: ");
         String name = scanner.nextLine();
 
-        System.out.print("Enter species: ");
-        String species = scanner.nextLine();
+        System.out.print("Age: ");
+        int age = readInt();
 
-        System.out.print("Enter age: ");
-        int age = scanner.nextInt();
-        scanner.nextLine();
-
-        Pet pet = new Pet(id, name, species, age);
-        pets.add(pet);
-
-        System.out.println("✅ Pet added successfully!");
+        if (type == 1) {
+            System.out.print("Breed: ");
+            String breed = scanner.nextLine();
+            pets.add(new Dog(id, name, age, breed));
+        } else {
+            System.out.print("Indoor (true/false): ");
+            boolean indoor = Boolean.parseBoolean(scanner.nextLine());
+            pets.add(new Cat(id, name, age, indoor));
+        }
     }
-    private static void viewAllPets() {
-        System.out.println("\n🌟 LIST OF PETS 🌟");
 
-        if (pets.isEmpty()) {
-            System.out.println("❌ No pets found.");
-            return;
+    private static void viewPets() {
+        for (Pet p : pets) {
+            System.out.println(p.getId() + " " + p.getName() + " " + p.getSpecies());
+            p.makeSound();
+
+            if (p instanceof Dog d) {
+                System.out.println("Breed: " + d.getBreed());
+                System.out.println("Service dog: " + d.isServiceDog());
+                d.fetch();
+            }
+
+            if (p instanceof Cat c) {
+                System.out.println("Indoor: " + c.isIndoor());
+                System.out.println("Needs outdoor care: " + c.needsOutdoorCare());
+                c.scratch();
+            }
+        }
+    }
+
+
+    private static void addOwner() {
+        System.out.print("1 Default | 2 With data: ");
+        int type = readInt();
+
+        Owner o;
+
+        if (type == 1) {
+            o = new Owner();
+        } else {
+            System.out.print("ID: ");
+            int id = readInt();
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Phone: ");
+            String phone = scanner.nextLine();
+            System.out.print("Pets count: ");
+            int count = readInt();
+
+            o = new Owner(id, name, phone, count);
+        }
+        owners.add(o);
+    }
+
+    private static void viewOwners() {
+        for (Owner o : owners) {
+            System.out.println(
+                    o.getOwnerId() + " " +
+                            o.getName() + " " +
+                            o.getPhone() + " pets=" +
+                            o.getNumberOfPets()
+            );
+            o.addPet();
+            System.out.println("Frequent client: " + o.isFrequentClient());
+        }
+    }
+
+
+    private static void addVet() {
+        System.out.print("1 Default | 2 With data: ");
+        int type = readInt();
+
+        Veterinarian v;
+
+        if (type == 1) {
+            v = new Veterinarian();
+        } else {
+            System.out.print("ID: ");
+            int id = readInt();
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Spec: ");
+            String spec = scanner.nextLine();
+            System.out.print("Experience: ");
+            int exp = readInt();
+
+            v = new Veterinarian(id, name, spec, exp);
+        }
+        veterinarians.add(v);
+    }
+
+    private static void viewVets() {
+        for (Veterinarian v : veterinarians) {
+            System.out.println(
+                    v.getVetId() + " " +
+                            v.getName() + " spec=" +
+                            v.getSpecialization() +
+                            " exp=" + v.getExperienceYears()
+            );
+            System.out.println("Experienced: " + v.isExperienced());
+            System.out.println("Can treat dogs: " + v.canTreat("Dog"));
+        }
+    }
+
+    private static void runAllTests() {
+        System.out.println("\n=== FULL TEST ===");
+
+        Owner o = new Owner();
+        o.getOwnerId(); o.getName(); o.getPhone(); o.getNumberOfPets();
+        System.out.println("\n Owner class work");
+        for (Owner o1 : owners) {
+            System.out.println(o1);
         }
 
-        for (int i = 0; i < pets.size(); i++) {
-            System.out.println((i + 1) + ". " + pets.get(i));
+
+        Veterinarian v = new Veterinarian();
+        v.getVetId(); v.getName(); v.getExperienceYears(); v.getSpecialization();
+        System.out.println("\n Veterinarian class work");
+        for (Veterinarian v1 : veterinarians) {
+            System.out.println(v1);
         }
+
+        Dog d = new Dog(1, "Max", 4, "Labrador");
+        d.getBreed(); d.fetch(); d.isServiceDog();
+        System.out.println("\n Dog class work");
+
+
+        Cat c = new Cat(2, "Luna", 2, true);
+        c.isIndoor(); c.needsOutdoorCare(); c.scratch();
+        System.out.println("\n Cat class work");
+
+        for (Pet p : pets) {
+            System.out.println(p);
+        }
+
+        System.out.println("=== ALL USED ===");
+    }
+
+    private static int readInt() {
+        while (!scanner.hasNextInt()) scanner.next();
+        int val = scanner.nextInt();
+        scanner.nextLine();
+        return val;
     }
 }
-

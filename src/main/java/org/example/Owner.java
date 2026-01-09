@@ -7,10 +7,10 @@ public class Owner {
     private int numberOfPets;
 
     public Owner(int ownerId, String name, String phone, int numberOfPets) {
-        this.ownerId = ownerId;
-        this.name = name;
-        this.phone = phone;
-        this.numberOfPets = numberOfPets;
+        setOwnerId(ownerId);
+        setName(name);
+        setPhone(phone);
+        setNumberOfPets(numberOfPets);
     }
 
     public Owner() {
@@ -28,7 +28,7 @@ public class Owner {
         return name;
     }
 
-    public String getPhoneNumber() {
+    public String getPhone() {
         return phone;
     }
 
@@ -37,19 +37,31 @@ public class Owner {
     }
 
     public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
+        if (ownerId > 0) {
+            this.ownerId = ownerId;
+        } else {
+            this.ownerId = 0;
+        }
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        }
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phone = phone;
+    public void setPhone(String phone) {
+        if (phone != null && phone.matches("\\+?[0-9 ]{7,15}")) {
+            this.phone = phone;
+        } else {
+            this.phone = "N/A";
+        }
     }
 
     public void setNumberOfPets(int numberOfPets) {
-        this.numberOfPets = numberOfPets;
+        if (numberOfPets >= 0) {
+            this.numberOfPets = numberOfPets;
+        }
     }
 
     public void addPet() {
@@ -62,7 +74,12 @@ public class Owner {
 
     @Override
     public String toString() {
-        return "Owner{ownerId=" + ownerId + ", name='" + name +
-                "', phone='" + phone + "', numberOfPets=" + numberOfPets + "}";
+        return "Owner{" +
+                "ownerId=" + ownerId +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", numberOfPets=" + numberOfPets +
+                '}';
     }
 }
+

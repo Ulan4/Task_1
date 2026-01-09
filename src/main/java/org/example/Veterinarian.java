@@ -7,10 +7,17 @@ public class Veterinarian {
     private int experienceYears;
 
     public Veterinarian(int vetId, String name, String specialization, int experienceYears) {
-        this.vetId = vetId;
-        this.name = name;
-        this.specialization = specialization;
-        this.experienceYears = experienceYears;
+        setVetId(vetId);
+        setName(name);
+        setSpecialization(specialization);
+        setExperienceYears(experienceYears);
+    }
+
+    public Veterinarian() {
+        this.vetId = 0;
+        this.name = "Unknown";
+        this.specialization = "General";
+        this.experienceYears = 0;
     }
 
     public int getVetId() {
@@ -21,30 +28,39 @@ public class Veterinarian {
         return name;
     }
 
-    public int getExperienceYears() {
-        return experienceYears;
-    }
-
     public String getSpecialization() {
         return specialization;
     }
 
+    public int getExperienceYears() {
+        return experienceYears;
+    }
+
     public void setVetId(int vetId) {
-        this.vetId = vetId;
+        if (vetId > 0) {
+            this.vetId = vetId;
+        } else {
+            this.vetId = 0;
+        }
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setExperienceYears(int experienceYears) {
-        this.experienceYears = experienceYears;
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        }
     }
 
     public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+        if (specialization != null && !specialization.trim().isEmpty()) {
+            this.specialization = specialization;
+        }
     }
 
+    public void setExperienceYears(int experienceYears) {
+        if (experienceYears >= 0) {
+            this.experienceYears = experienceYears;
+        }
+    }
 
     public boolean isExperienced() {
         return experienceYears >= 5;
@@ -56,8 +72,11 @@ public class Veterinarian {
 
     @Override
     public String toString() {
-        return "Veterinarian{vetId=" + vetId + ", name='" + name +
-                "', specialization='" + specialization +
-                "', experienceYears=" + experienceYears + "}";
+        return "Veterinarian{" +
+                "vetId=" + vetId +
+                ", name='" + name + '\'' +
+                ", specialization='" + specialization + '\'' +
+                ", experienceYears=" + experienceYears +
+                '}';
     }
 }
