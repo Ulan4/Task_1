@@ -1,4 +1,5 @@
-package org.example;
+package org.example.model;
+
 public class Dog extends Pet {
 
     private String breed;
@@ -35,3 +36,4 @@ public class Dog extends Pet {
         return super.toString() + ", Breed=" + breed;
     }
 }
+

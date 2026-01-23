@@ -1,4 +1,5 @@
-package org.example;
+package org.example.model;
+
 public class Cat extends Pet {
 
     private boolean indoor;
@@ -36,3 +37,5 @@ public class Cat extends Pet {
                 ", Indoor=" + (indoor ? "Yes" : "No");
     }
 }
+
+
