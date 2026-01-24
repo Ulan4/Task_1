@@ -4,7 +4,6 @@ import org.example.exception.InvalidInputException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class MenuManager implements Menu {
 
     private ArrayList<Pet> pets = new ArrayList<>();
@@ -66,10 +65,13 @@ public class MenuManager implements Menu {
     private void addDog() {
         System.out.print("ID: ");
         int id = Integer.parseInt(scanner.nextLine());
+
         System.out.print("Name: ");
         String name = scanner.nextLine();
+
         System.out.print("Age: ");
         int age = Integer.parseInt(scanner.nextLine());
+
         System.out.print("Breed: ");
         String breed = scanner.nextLine();
 
@@ -79,10 +81,13 @@ public class MenuManager implements Menu {
     private void addCat() {
         System.out.print("ID: ");
         int id = Integer.parseInt(scanner.nextLine());
+
         System.out.print("Name: ");
         String name = scanner.nextLine();
+
         System.out.print("Age: ");
         int age = Integer.parseInt(scanner.nextLine());
+
         System.out.print("Indoor: ");
         boolean indoor = Boolean.parseBoolean(scanner.nextLine());
 
@@ -101,10 +106,13 @@ public class MenuManager implements Menu {
     private void addOwner() {
         System.out.print("ID: ");
         int id = Integer.parseInt(scanner.nextLine());
+
         System.out.print("Name: ");
         String name = scanner.nextLine();
+
         System.out.print("Phone: ");
         String phone = scanner.nextLine();
+
         System.out.print("Pets count: ");
         int count = Integer.parseInt(scanner.nextLine());
 
@@ -122,10 +130,13 @@ public class MenuManager implements Menu {
     private void addVeterinarian() {
         System.out.print("ID: ");
         int id = Integer.parseInt(scanner.nextLine());
+
         System.out.print("Name: ");
         String name = scanner.nextLine();
+
         System.out.print("Specialization: ");
         String spec = scanner.nextLine();
+
         System.out.print("Experience: ");
         int exp = Integer.parseInt(scanner.nextLine());
 

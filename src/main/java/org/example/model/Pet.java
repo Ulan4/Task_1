@@ -14,8 +14,8 @@ public abstract class Pet {
         setSpecies(species);
     }
 
-    public abstract void makeSound();   // REQUIRED
-    public abstract String getType();   // REQUIRED
+    public abstract void makeSound();
+    public abstract String getType();
 
     public int getId() { return id; }
     public String getName() { return name; }

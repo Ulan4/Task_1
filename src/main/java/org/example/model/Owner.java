@@ -63,6 +63,7 @@ public class Owner {
                 ", Phone='" + phone + '\'' +
                 ", Pets=" + numberOfPets +
                 '}';
+
     }
 }
 

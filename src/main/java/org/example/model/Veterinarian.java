@@ -54,6 +54,7 @@ public class Veterinarian implements Treatable {
         return specialization.equalsIgnoreCase(species);
     }
 
+
     @Override
     public String toString() {
         return "Veterinarian{" +
